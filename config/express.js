@@ -21,20 +21,20 @@ module.exports = function () {
         extended: true
     }));
 
-module.exports = function () {
-    
-       var config = require('./config');
-       app.use(session({
-              secret: config.sessionSecret,
-              resave: false,
-              saveUninitializeed: true
-       }));
-       app.use(passport.initialize()); // start passport
-       app.use(passport.session()); // use session via express-session
+    var config = require('./config');
+    app.use(session({
+        secret: config.sessionSecret,
+        resave: false,
+        saveUninitializeed: true
+    }));
+    app.use(passport.initialize()); // start passport
+    app.use(passport.session()); // use session via express-session
 
-       require('../app/routes/index.route')(app);
-    
-}
+    var path = require("path");
+    app.set('views', path.join(__dirname + '/../app/views/home.html'));
+    app.engine('html', require('ejs').renderFile);
+    app.set('view engine', 'ejs');
+
 
     require('../app/routes/index.route')(app);
     require('../app/routes/user.route')(app);
