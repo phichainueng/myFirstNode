@@ -11,5 +11,6 @@ module.exports = function(){
        });
 
        require('../app/models/user.model');
+       require('../app/models/post.model');
        return db;
 } 
